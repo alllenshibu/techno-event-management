@@ -1,0 +1,20 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [pgcrypto]
+}
+
+model MailingList {
+  id       String @default(uuid())
+  tenantId String @unique @default(uuid())
+
+  name     String
+  emailIds String[]
+
+  @@id([tenantId, id])
+}

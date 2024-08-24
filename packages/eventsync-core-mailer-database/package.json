@@ -1,0 +1,18 @@
+{
+  "name": "eventsync-core-mailer-database",
+  "version": "0.1.0",
+  "main": "./index.ts",
+  "types": "./index.d.ts",
+  "scripts": {
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push --skip-generate",
+    "setup": "node -e \"require('fs').copyFile('.env.example', '.env', (err) => {if (err) {console.log(err);} else {console.log('Prisma client generated and environment variables set up successfully');}});\" && prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "prisma": "^5.7.1"
+  }
+}

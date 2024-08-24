@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
-import { sendMail } from './controller/mail';
+import { sendMail } from './controllers/MailController';
 
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -29,16 +29,6 @@ app.get('/health', (req: Request, res: Response) => {
   } catch (error) {
     healthcheck.message = error;
     res.status(503).send();
-  }
-});
-
-app.post('/send-mail', async (req: Request, res: Response) => {
-  const { email, subject, text } = req.body;
-  try {
-    await sendMail(email, subject, text);
-    res.status(200).send('Email sent successfully');
-  } catch (error) {
-    res.status(500).send('Email failed to send');
   }
 });
 
